@@ -17,6 +17,17 @@ export default function Home() {
     };
   }, []);
 
+  // Función para navegación suave
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   // Datos del portafolio
   const projects = [
     {
@@ -26,7 +37,7 @@ export default function Home() {
       tech: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
       type: "Web",
       image: "",
-      link: "#"
+      link: "https://eduquery-seven.vercel.app"
     },
     {
       id: 2,
@@ -34,8 +45,8 @@ export default function Home() {
       description: "Web application for parametric calculations in software engineering, enabling efficient estimation and analysis.",
       tech: ["React", "JavaScript"],
       type: "Web",
-      image: "📊",
-      link: "#"
+      image: "",
+      link: "https://metricasdesoftware.vercel.app"
     },
     {
       id: 3,
@@ -43,8 +54,8 @@ export default function Home() {
       description: "Mobile app that finds recipes based on available ingredients, offering suggestions and cooking instructions.",
       tech: ["React Native", "TypeScript"],
       type: "Mobile",
-      image: "🍳",
-      link: "#"
+      image: "",
+      link: "https://github.com/sheydazz/WhatsCooking"
     }
   ];
 
@@ -72,22 +83,34 @@ export default function Home() {
       {/* Navbar*/}
       <nav className={`fixed top-0 left-0 right-0 m-10 mx-auto max-w-2xl z-50 flex flex-row gap-6 font-bold text-green-800 p-4 rounded-2xl justify-center items-center transition-all duration-300 ${IsScrolled ? 'bg-white/90 backdrop-blur-sm shadow-lg' : 'bg-transparent'
         }`}>
-        <button className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10">
+        <button 
+          onClick={() => scrollToSection('about')}
+          className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10 cursor-pointer"
+        >
           About
         </button>
-        <button className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10">
+        <button 
+          onClick={() => scrollToSection('projects')}
+          className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10 cursor-pointer"
+        >
           Projects
         </button>
-        <button className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10">
+        <button 
+          onClick={() => scrollToSection('technologies')}
+          className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10 cursor-pointer"
+        >
           Technologies
         </button>
-        <button className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10">
+        <button 
+          onClick={() => scrollToSection('contact')}
+          className="hover:bg-white/100 active:bg-white/90 bg-white/50 px-4 py-2 rounded-xl text-sm text-center transition-colors border-0 h-10 cursor-pointer"
+        >
           Contact
         </button>
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4">
+      <section id="about" className="min-h-screen flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-4xl">
           <div className="mb-10 mt-30">
             <div className="relative w-48 h-48 rounded-full mx-auto mb-6 bg-gradient-to-br from-pink-400 to-purple-600 p-1">
@@ -131,7 +154,10 @@ export default function Home() {
               })}
             </div>
 
-            <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 cursor-pointer"
+            >
               my projects↓
             </button>
           </div>
@@ -139,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-white/50">
+      <section id="projects" className="py-20 bg-white/50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -178,7 +204,7 @@ export default function Home() {
                     href={project.link}
                     className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-full font-semibold text-sm hover:from-green-500 hover:to-blue-600 transition-all duration-200 inline-flex items-center gap-2"
                   >
-                    Ver proyecto
+                    View project
                     <span>→</span>
                   </a>
                 </div>
@@ -189,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* Technologies Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+      <section id="technologies" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -219,7 +245,7 @@ export default function Home() {
 
 
       {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-purple-600 text-white">
+      <section id="contact" className="py-20 bg-gradient-to-r from-green-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Shall we work together?
